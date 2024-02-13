@@ -154,49 +154,52 @@ class SignInViewController: UIViewController {
         setUpUI()
     }
     
-    private func setUpUI() {
+    private func setUpUI(){
+        
         view.backgroundColor = UIColor(red: 33/255, green: 160/255, blue: 185/255, alpha: 1.0)
-
-        // Logo image
+        
+        //logo image
         view.addSubview(logoImage)
-        NSLayoutConstraint.activate([
-            logoImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
-            logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImage.heightAnchor.constraint(equalToConstant: 256),
-            logoImage.widthAnchor.constraint(equalToConstant: 350)
-        ])
-
-        // Welcome label
+        NSLayoutConstraint.activate(
+            [logoImage.topAnchor.constraint(equalTo: view.topAnchor, constant: 50),
+             logoImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+             logoImage.heightAnchor.constraint(equalToConstant: 256),
+             logoImage.widthAnchor.constraint(equalToConstant: 350)
+            ])
+        
+        //welcome label
         view.addSubview(welcomeLabel)
-        NSLayoutConstraint.activate([
-            welcomeLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor, constant: 20),
-            welcomeLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-
-        // Sign in label
+        NSLayoutConstraint.activate(
+            [welcomeLabel.topAnchor.constraint(equalTo: logoImage.bottomAnchor,constant: 2),
+             welcomeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
+            ])
+        
+        //sign in label
         view.addSubview(signInLabel)
-        NSLayoutConstraint.activate([
-            signInLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 5),
-            signInLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
-
-        // Top view
+        NSLayoutConstraint.activate(
+            [signInLabel.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 5),
+             signInLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 15)
+            ])
+        
+        //top view
         view.addSubview(topView)
         NSLayoutConstraint.activate([
-            topView.topAnchor.constraint(equalTo: signInLabel.bottomAnchor, constant: 20),
+            topView.topAnchor.constraint(equalTo: signInLabel.bottomAnchor, constant: 10),
             topView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             topView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             topView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-
-        // Email label
+        
+        //email label
+        
         topView.addSubview(emailLabel)
         NSLayoutConstraint.activate([
             emailLabel.topAnchor.constraint(equalTo: topView.topAnchor, constant: 30),
             emailLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 15)
         ])
-
-        // Email text field
+        
+        //email textfiels
+        
         topView.addSubview(emailTextField)
         NSLayoutConstraint.activate([
             emailTextField.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 5),
@@ -204,15 +207,17 @@ class SignInViewController: UIViewController {
             emailTextField.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -15),
             emailTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
-
-        // Password label
+        
+        //password label
+        
         topView.addSubview(passwordLabel)
         NSLayoutConstraint.activate([
             passwordLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 15),
             passwordLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 15)
         ])
-
-        // Password text field
+        
+        //password textfiels
+        
         topView.addSubview(passwordTextField)
         NSLayoutConstraint.activate([
             passwordTextField.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 5),
@@ -220,8 +225,8 @@ class SignInViewController: UIViewController {
             passwordTextField.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -15),
             passwordTextField.heightAnchor.constraint(equalToConstant: 40)
         ])
-
-        // Show password button
+        
+        // showPasswordButton
         topView.addSubview(showPasswordButton)
         NSLayoutConstraint.activate([
             showPasswordButton.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
@@ -230,16 +235,16 @@ class SignInViewController: UIViewController {
             showPasswordButton.heightAnchor.constraint(equalToConstant: 25)
         ])
         showPasswordButton.addTarget(self, action: #selector(showPasswordTapped), for: .touchUpInside)
-
-        // Forgot password button
+        
+        // forgot password button
         topView.addSubview(forgotPasswordButton)
         NSLayoutConstraint.activate([
             forgotPasswordButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 6),
             forgotPasswordButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant: -15)
         ])
         forgotPasswordButton.addTarget(self, action: #selector(forgotPasswordTapped), for: .touchUpInside)
-
-        // Checkbox button
+        
+        // checkbox button
         topView.addSubview(checkBoxButton)
         NSLayoutConstraint.activate([
             checkBoxButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 10),
@@ -248,44 +253,49 @@ class SignInViewController: UIViewController {
             checkBoxButton.heightAnchor.constraint(equalToConstant: 25)
         ])
         checkBoxButton.addTarget(self, action: #selector(checkBoxTapped), for: .touchUpInside)
-
-        // Remember me label
+        
+        // remember me label
         topView.addSubview(rememberMeLabel)
         NSLayoutConstraint.activate([
             rememberMeLabel.centerYAnchor.constraint(equalTo: checkBoxButton.centerYAnchor),
             rememberMeLabel.leadingAnchor.constraint(equalTo: checkBoxButton.trailingAnchor, constant: 5)
         ])
-
-        // Sign in button
+        
+        // sign in button
+        
         topView.addSubview(signInButton)
-        NSLayoutConstraint.activate([
-            signInButton.topAnchor.constraint(equalTo: checkBoxButton.bottomAnchor, constant: 25),
-            signInButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
-            signInButton.widthAnchor.constraint(equalToConstant: 168),
-            signInButton.heightAnchor.constraint(equalToConstant: 40)
-        ])
+        NSLayoutConstraint.activate(
+            [signInButton.topAnchor.constraint(equalTo: checkBoxButton.bottomAnchor, constant: 25),
+             signInButton.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
+             signInButton.widthAnchor.constraint(equalToConstant: 168),
+             signInButton.heightAnchor.constraint(equalToConstant: 40)
+             
+            ])
+        
         signInButton.addTarget(self, action: #selector(signInTapped), for: .touchUpInside)
-
-        // Vector image
+        
+        
+        //vector image
         topView.addSubview(backgroundImage)
-        NSLayoutConstraint.activate([
-            backgroundImage.bottomAnchor.constraint(equalTo: topView.bottomAnchor),
-            backgroundImage.leadingAnchor.constraint(equalTo: topView.leadingAnchor),
-            backgroundImage.trailingAnchor.constraint(equalTo: topView.trailingAnchor)
-        ])
-
-        // Sign up label
+        NSLayoutConstraint.activate(
+            [backgroundImage.bottomAnchor.constraint(equalTo: topView.bottomAnchor),
+             backgroundImage.leadingAnchor.constraint(equalTo: topView.leadingAnchor),
+             backgroundImage.trailingAnchor.constraint(equalTo: topView.trailingAnchor)
+            ])
+        
+        // sign up label
         topView.addSubview(signUpLabel)
         NSLayoutConstraint.activate([
-            signUpLabel.bottomAnchor.constraint(equalTo: backgroundImage.topAnchor, constant: -10),
+            signUpLabel.bottomAnchor.constraint(equalTo: backgroundImage.topAnchor, constant: 10),
             signUpLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 15)
         ])
-
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(signUpTapped))
         signUpLabel.isUserInteractionEnabled = true
         signUpLabel.addGestureRecognizer(tapGesture)
+        
+        
     }
-
     
     @objc private func showPasswordTapped() {
         passwordTextField.isSecureTextEntry.toggle()
